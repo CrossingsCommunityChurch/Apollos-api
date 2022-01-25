@@ -1,0 +1,327 @@
+# This file, in conjuction with your .env file,
+# should be used to configure the apollos server.
+
+# Any values you wish to keep secret should be placed in `.env`
+# You can access those values (and any other values in your environment)
+# using the ${VARIABLE_NAME} syntax
+
+# This file should be checked into version control.
+# `.env` should NOT be checked into version control.
+APP:
+  # This variable is used for generating deep links.
+  # It should match whatver is in your Info.plist `CFBundleURLTypes`
+  DEEP_LINK_HOST: ${DEEP_LINK_HOST}
+  UNIVERSAL_LINK_HOST: ${UNIVERSAL_LINK_HOST}
+  ROOT_API_URL: ${ROOT_URL}
+  JOBS_USERNAME: ${JOBS_USERNAME}
+  JOBS_PASSWORD: ${JOBS_PASSWORD}
+DATABASE:
+  URL: ${DATABASE_URL}
+BUGSNAG:
+  API_KEY: ${BUGSNAG_KEY}
+ROCK:
+  URL: ${ROCK_URL}
+  API_TOKEN: ${ROCK_TOKEN}
+UNIVERSAL_LINKS:
+  APPLE_APP_ID: ${APPLE_APP_ID}
+  APPLE_TEAM_ID: ${APPLE_TEAM_ID}
+  APP_STORE_LINK: ${IOS_REDIRECT}
+  PLAY_STORE_LINK: ${ANDROID_REDIRECT}
+  GOOGLE_APP_ID: ${GOOGLE_APP_ID}
+  GOOGLE_KEYSTORE_SHA256: ${GOOGLE_KEYSTORE_SHA256}
+ONE_SIGNAL:
+  APP_ID: ${ONE_SIGNAL_APP_ID}
+  REST_KEY: ${ONE_SIGNAL_REST_KEY}
+CHURCH_ONLINE:
+  URLS: 
+    - NAME: Test
+      ROCKID: 1972
+      CHOP: https://ccctest.online.church
+      HLS: https://crossings.church
+    - NAME: Venue
+      ROCKID: 1741
+      CHOP: https://venue.crossings.church
+      HLS: ""
+    - NAME: Sanctuary
+      ROCKID: 1761
+      CHOP: https://sanct.crossings.church
+      HLS: ""
+    - NAME: Edmond
+      ROCKID: 1762
+      CHOP: https://edmond.crossings.church
+      HLS: ""
+  WEB_VIEW_URL: https://ccctest.online.church/
+ALGOLIA:
+  APPLICATION_ID: ${ALGOLIASEARCH_APPLICATION_ID}
+  API_KEY: ${ALGOLIASEARCH_API_KEY}
+TWILIO:
+  ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+  AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+  FROM_NUMBER: ${TWILIO_FROM_NUMBER}
+PASS:
+  TEMPLATES:
+    CHECKIN: ${PWD}/wallet-passes/checkin.pass
+  CERTIFICATES:
+    WWDR: ${PASS_WWDR_CERT}
+    SIGNER_CERT: ${PASS_SIGNER_CERT}
+    SIGNER_KEY: ${PASS_SIGNER_KEY}
+    SIGNER_KEY_PASSPHRASE: ${PASS_SIGNER_PASSPHRASE}
+BIBLE_API:
+  KEY: ${BIBLE_API_KEY}
+  BIBLE_ID:
+    WEB: '9879dbb7cfe39e4d-01'
+    KJV: 'de4e12af7f28f599-02'
+CLOUDINARY:
+  URL: ${CLOUDINARY_URL}
+SIMPLEDONATION:
+  KEY: ${SIMPLE_DONATION_KEY}
+CONTENT:
+  SERMON_CHANNEL_ID: 1d14f86d-fe99-4bcd-8456-ef22adc0d43f
+  
+  TYPES:
+    - ContentSeriesContentItem
+    - DevotionalContentItem
+    - MediaContentItem
+    - UniversalContentItem
+    - WeekendContentItem
+    - LiveContentItem
+    - ContentItem
+
+  DATAVIEW_CATEGORIES:
+    # Id of the category used to store all persona dataviews
+    PersonaId: 498
+
+  ALL_CONTENT_CHANNELS:
+    - 1d14f86d-fe99-4bcd-8456-ef22adc0d43f #Sermon message id 21
+    - 13ffb055-56e0-4bb8-b349-022336ef3239 #teaching Message id 22
+    - a51d4c7c-53ad-4e90-80cc-a5db8f9d6f92 #Gathering message id 423
+    - a9d3319c-d06d-4e16-bed7-530e6555ae5e #Devotionals id 23
+
+  ALL_CALIDS:
+    - 4
+    - 3
+    - 1
+    - 5
+    - 6
+    
+ 
+
+  SERVING_GROUP_TYPE_ID: 23
+  COMMUNITY_GROUP_TYPE_ID: 25
+  FAMILY_GROUP_TYPE_ID: 10
+
+  MOBILE_DEVICE_TYPE_ID: 675
+
+  SUNDAY_SERMON_SCHEDULE_CATEGORY_ID: 406
+
+  LIVESTREAM_CONTENT_CHANNEL_IDS: 
+    - d5f7c59d-079a-479b-8bd1-6ab8e0c2da1f
+  
+
+TABS:
+  HOME:
+    - algorithms: [DAILY_PRAYER]
+      isCard: false
+      type: PrayerList
+      title: Daily Prayer
+    - type: ActionBar
+      actions: [{
+        title: Info,
+        icon: cal,
+        id: 122,
+        action: OPEN_CHANNEL,
+          relatedNode: {
+            __typename: 'ContentChannel',
+            apollosId: 'ContentChannel:b80faa86-97ec-4034-b56b-f086a083834e'
+          }
+      },
+      {
+        title: Check In,
+        icon: check,
+        id: 120,
+        action: OPEN_AUTHENTICATED_URL,
+        relatedNode: {
+          __typename: Url,
+          url: 'https://app.crossings.church/self-checkin',
+        }
+      },
+      ]
+    - algorithms: [UPCOMING_STREAMS]
+      type: LiveContentList
+      title: Live Now
+    # - algorithms:
+    #   - type: CAMPAIGN_ITEMS
+    #     arguments:
+    #       channelIds:
+    #         - b80faa86-97ec-4034-b56b-f086a083834e
+    #         - 9bc14762-96b7-499d-910e-c648e1396082
+    #   type: HeroList
+    #   isFeatured: true
+    #   subtitle: Featured
+    - algorithms:
+      - type: CONTENT_FEED
+        arguments:
+          channelIds:
+            - 1d14f86d-fe99-4bcd-8456-ef22adc0d43f
+          limit: 5
+      type: HeroList
+      title: Recent Sermons
+      primaryAction:
+        action: OPEN_CHANNEL
+        title: See More
+        relatedNode:
+          __typename: ContentChannel
+          apollosId: ContentChannel:1d14f86d-fe99-4bcd-8456-ef22adc0d43f
+    - title: Events and Groups
+      subtitle: What's happening at Crossings
+      type: ActionList
+      primaryAction:
+        action: OPEN_URL
+        title: See More
+        relatedNode:
+          __typename: Url
+          url: 'Crossings://crossings/app-link/nav/EventFeed'
+      algorithms:
+        - type: GROUPS_AND_EVENTS     
+    - title: FOR YOU
+      algorithms: [SERMON_CHILDREN, PERSONA_FEED]
+      subtitle: Explore what God calls you to today
+      type: ActionList
+    - algorithms:
+      - type: SERIES_IN_PROGRESS
+        arguments:
+          channelIds:
+            - 1d14f86d-fe99-4bcd-8456-ef22adc0d43f
+            - bee639de-4185-46a4-81c3-fe82e72596b6
+            - 2dac29bb-f7b7-4e7e-a22d-26174ab2ef60
+      subtitle: Continue
+      type: HorizontalCardList
+    - title: RECOMMENDED
+      algorithms: [SERMON_CHILDREN]
+      subtitle: For Him
+      type: VerticalCardList
+#NEED TO NAIL DOWN WHAT TO SHOW HERE.  
+  READ:
+      - algorithms:
+          - type: CONTENT_FEED
+            arguments:
+              channelIds:
+                - a9d3319c-d06d-4e16-bed7-530e6555ae5e
+              limit: 5
+        type: HeroList
+        title: Devotions
+        primaryAction:
+          action: OPEN_CHANNEL
+          title: See More
+          relatedNode:
+            __typename: ContentChannel
+            apollosId: ContentChannel:a9d3319c-d06d-4e16-bed7-530e6555ae5e
+  
+  WATCH:
+    #need to limit this one to not show all existing sermon series and to point to the read more action
+      - algorithms:
+          - type: CONTENT_FEED
+            arguments:
+              channelIds:
+                - 72e659ba-754f-4227-ba0f-ae60eac674f1
+              limit: 6
+        type: HorizontalCardList
+        subtitle: Sermon Series
+        primaryAction:
+          action: OPEN_CHANNEL
+          title: See More
+          relatedNode:
+            __typename: ContentChannel
+            apollosId: ContentChannel:72e659ba-754f-4227-ba0f-ae60eac674f1
+      - algorithms:
+          - type: CONTENT_FEED
+            arguments:
+              channelIds:
+                - bee639de-4185-46a4-81c3-fe82e72596b6
+              limit: 6
+        type: HorizontalCardList
+        subtitle: Teaching Series
+        primaryAction:
+          action: OPEN_CHANNEL
+          title: See More
+          relatedNode:
+            __typename: ContentChannel
+            apollosId: ContentChannel:bee639de-4185-46a4-81c3-fe82e72596b6
+      - algorithms:
+          - type: CONTENT_FEED
+            arguments:
+              channelIds:
+                - 2dac29bb-f7b7-4e7e-a22d-26174ab2ef60
+              limit: 6
+        type: HorizontalCardList
+        subtitle: The Gathering Series
+        primaryAction:
+          action: OPEN_CHANNEL
+          title: See More
+          relatedNode:
+            __typename: ContentChannel
+            apollosId: ContentChannel:2dac29bb-f7b7-4e7e-a22d-26174ab2ef60
+      #- algorithms:
+      #    - type: CONTENT_FEED
+      #      arguments:
+      #        channelIds:
+      #          - 19
+      #          - 422
+      #        limit: 
+      #  type: HorizontalCardList
+      #  subtitle: Podcasts
+      #  primaryAction:
+      #    action: OPEN_CHANNEL
+      #    title: 'Read More'
+      #    relatedNode:
+      #      __typename: ContentChannel
+      #      id: 5
+      #      name: Podcasts
+      #- algorithms:
+      #    - type: CONTENT_FEED
+      #      arguments:
+      #        channelIds:
+      #          - 6
+      #        limit: 3
+      #  type: HorizontalCardList
+      #  title: Videos
+      #  primaryAction:
+      #    action: OPEN_CHANNEL
+      #    title: 'Read More'
+      #    relatedNode:
+      #      __typename: ContentChannel
+      #      id: 6
+      #      name: Videos
+      #- algorithms:
+      #    - type: CONTENT_FEED
+      #      arguments:
+      #        channelIds:
+      #          - 8
+      #        limit: 3
+      #  type: HorizontalCardList
+      #  subtitle: Something Else
+
+  PRAY:
+    - type: VerticalPrayerList
+      title: Your prayers
+  GIVE:
+    - type: WebView
+      height: 600
+      url: ${ROOT_URL}/simpledonation
+  CONNECT:
+    - type: FollowPeople
+    - type: ActionTable
+      title: Connect to Apollos
+      actions:
+        [
+          {
+            title: Google,
+            action: OPEN_URL,
+            relatedNode: { __typename: Url, url: 'https://www.google.com' },
+          },
+          {
+            title: Facebook,
+            action: OPEN_URL,
+            relatedNode: { __typename: Url, url: 'https://www.facebook.com' },
+          },
+        ]
