@@ -108,7 +108,6 @@ export default class Group extends RockApolloDataSource {
     const filteredGroups = groups.filter(({ id }) => id === groupId);
     if (filteredGroups.length > 0) {
       const group = filteredGroups[0];
-      console.log('SELECTED GROUP IS ......................', group);
       return group.locationName;
     }
     return null;
