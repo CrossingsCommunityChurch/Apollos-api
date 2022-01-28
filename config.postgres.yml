@@ -124,15 +124,18 @@ TABS:
       isCard: false
       type: PrayerList
       title: Daily Prayer
+      arguments:
+          numberDaysSincePrayer: 1
+          limit: 25
     - type: ActionBar
       actions: [{
-        title: Info,
+        title: Announcements,
         icon: cal,
         id: 122,
         action: OPEN_CHANNEL,
           relatedNode: {
             __typename: 'ContentChannel',
-            apollosId: 'ContentChannel:b80faa86-97ec-4034-b56b-f086a083834e'
+            apollosId: 'ContentChannel:9bc14762-96b7-499d-910e-c648e1396082'
           }
       },
       {
@@ -157,7 +160,7 @@ TABS:
     #         - 9bc14762-96b7-499d-910e-c648e1396082
     #   type: HeroList
     #   isFeatured: true
-    #   subtitle: Featured
+    #   subtitle: Featured  
     - algorithms:
       - type: CONTENT_FEED
         arguments:
@@ -172,6 +175,19 @@ TABS:
         relatedNode:
           __typename: ContentChannel
           apollosId: ContentChannel:1d14f86d-fe99-4bcd-8456-ef22adc0d43f
+    - algorithms:
+      - type: CONTENT_FEED
+        arguments:
+          channelIds:
+            - a8168cd6-6411-429c-98ed-f2a4ad6095f8
+      type: HorizontalCardList
+      subtitle: Worship
+        # primaryAction:
+        #   action: OPEN_CHANNEL
+        #   title: See More
+        #   relatedNode:
+        #     __typename: ContentChannel
+        #     apollosId: ContentChannel:a8168cd6-6411-429c-98ed-f2a4ad6095f8
     - title: Events and Groups
       subtitle: What's happening at Crossings
       type: ActionList
@@ -187,15 +203,15 @@ TABS:
       algorithms: [SERMON_CHILDREN, PERSONA_FEED]
       subtitle: Explore what God calls you to today
       type: ActionList
-    - algorithms:
-      - type: SERIES_IN_PROGRESS
-        arguments:
-          channelIds:
-            - 1d14f86d-fe99-4bcd-8456-ef22adc0d43f
-            - bee639de-4185-46a4-81c3-fe82e72596b6
-            - 2dac29bb-f7b7-4e7e-a22d-26174ab2ef60
-      subtitle: Continue
-      type: HorizontalCardList
+    # - algorithms:
+    #   - type: SERIES_IN_PROGRESS
+    #     arguments:
+    #       channelIds:
+    #         - 1d14f86d-fe99-4bcd-8456-ef22adc0d43f
+    #         - bee639de-4185-46a4-81c3-fe82e72596b6
+    #         - 2dac29bb-f7b7-4e7e-a22d-26174ab2ef60
+    #   subtitle: Continue
+    #   type: HorizontalCardList
     - title: RECOMMENDED
       algorithms: [SERMON_CHILDREN]
       subtitle: For Him
@@ -216,7 +232,13 @@ TABS:
           relatedNode:
             __typename: ContentChannel
             apollosId: ContentChannel:a9d3319c-d06d-4e16-bed7-530e6555ae5e
-  
+      # - algorithms:
+      #   - type: CONTENT_FEED
+      #     arguments:
+      #       channelIds:
+      #         - 4d6a5199-f0f6-486f-9d91-7fb73753c969
+      #   type: HorizontalCardList
+      #   subtitle: Blogs
   WATCH:
     #need to limit this one to not show all existing sermon series and to point to the read more action
       - algorithms:

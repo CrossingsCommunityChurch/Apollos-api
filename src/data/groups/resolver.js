@@ -32,6 +32,10 @@ const resolver = {
     groups: ({ id }, args, { dataSources }) =>
       dataSources.Groups.getByCampus(id),
   },
+  Query: {
+    allGroups: (root, args, { dataSources }) =>
+      dataSources.Group.getAllGroups(),
+  },
 };
 
 export default resolver;
