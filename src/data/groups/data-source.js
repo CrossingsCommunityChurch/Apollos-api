@@ -38,6 +38,14 @@ export default class Group extends RockApolloDataSource {
     return null;
   };
 
+  async getAllGroups() {
+    const groups = await this.getGroupsData();
+    const sortedGroups = groups
+      .filter(({ nextOc }) => nextOc && new Date(nextOc) > new Date())
+      .sort((a, b) => new Date(a.nextOc) - new Date(b.nextOc));
+    return sortedGroups;
+  }
+
   // Possibly leverage campus here to show groups by campus?
   async getGroups({ limit = null, campusId = null } = {}) {
     const groups = await this.getGroupsData();
@@ -108,7 +116,6 @@ export default class Group extends RockApolloDataSource {
     const filteredGroups = groups.filter(({ id }) => id === groupId);
     if (filteredGroups.length > 0) {
       const group = filteredGroups[0];
-      console.log('SELECTED GROUP IS ......................', group);
       return group.locationName;
     }
     return null;

@@ -44,7 +44,6 @@ class dataSource extends ActionAlgorithm.dataSource {
       }))
     );
     const toReturn = groups.concat(events1);
-    console.log('To return: ', toReturn);
     return toReturn.sort(
       (a, b) => new Date(a.dateFilter) - new Date(b.dateFilter)
     );
