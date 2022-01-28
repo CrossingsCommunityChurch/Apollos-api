@@ -13,6 +13,10 @@ export default gql`
     sharing: SharableContentItem
   }
 
+  extend type Query {
+    allGroups: [Group] @cacheControl(maxAge: 3600)
+  }
+
   extend type Campus {
     groups: [Group]
   }
