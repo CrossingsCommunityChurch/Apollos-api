@@ -1,8 +1,16 @@
 diff --git a/node_modules/@apollosproject/data-connector-postgres/lib/prayers/dataSource.js b/node_modules/@apollosproject/data-connector-postgres/lib/prayers/dataSource.js
-index 2fe6a6e..a0e7c8c 100644
+index 2fe6a6e..bb9e6de 100644
 --- a/node_modules/@apollosproject/data-connector-postgres/lib/prayers/dataSource.js
 +++ b/node_modules/@apollosproject/data-connector-postgres/lib/prayers/dataSource.js
-@@ -64,8 +64,9 @@ class Prayer extends _postgres.PostgresDataSource {
+@@ -33,6 +33,7 @@ class Prayer extends _postgres.PostgresDataSource {
+       Notification.createAndSend({
+         title: notificationText,
+         personId,
++        body: 'Pray for others?',
+         type: 'PRAYER'
+       });
+     });
+@@ -64,8 +65,9 @@ class Prayer extends _postgres.PostgresDataSource {
      });
      followers.forEach(follow => {
        Notification.createAndSend({
@@ -13,7 +21,7 @@ index 2fe6a6e..a0e7c8c 100644
          type: 'PRAYER'
        });
      });
-@@ -138,7 +139,7 @@ class Prayer extends _postgres.PostgresDataSource {
+@@ -138,7 +140,7 @@ class Prayer extends _postgres.PostgresDataSource {
      const prayerRequest = await this.getFromId(prayerId);
      await prayerRequest.addPrayedUser(currentPerson);
      const usersPrayed = await prayerRequest.getPrayedUsers();
