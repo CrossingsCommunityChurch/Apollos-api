@@ -1,16 +1,72 @@
+diff --git a/node_modules/@apollosproject/data-connector-postgres/lib/follows/dataSource.js b/node_modules/@apollosproject/data-connector-postgres/lib/follows/dataSource.js
+index 691494f..9dffc1b 100644
+--- a/node_modules/@apollosproject/data-connector-postgres/lib/follows/dataSource.js
++++ b/node_modules/@apollosproject/data-connector-postgres/lib/follows/dataSource.js
+@@ -218,7 +218,7 @@ class Follow extends _postgres.PostgresDataSource {
+     const followedPerson = await Person.getFromId(followedPersonId);
+     const requestPerson = await Person.getFromId(requestPersonId);
+     return this.context.dataSources.OneSignal.createNotification({
+-      content: `${requestPerson.firstName} ${requestPerson.lastName} has asked to follow you.`,
++      content: `${requestPerson.firstName} ${requestPerson.lastName} has asked to connect with you.`,
+       to: followedPerson,
+       data: {
+         requestPersonId: requestPerson.apollosId,
+diff --git a/node_modules/@apollosproject/data-connector-postgres/lib/notifications/dataSource.js b/node_modules/@apollosproject/data-connector-postgres/lib/notifications/dataSource.js
+index bf5ce63..19e45e4 100644
+--- a/node_modules/@apollosproject/data-connector-postgres/lib/notifications/dataSource.js
++++ b/node_modules/@apollosproject/data-connector-postgres/lib/notifications/dataSource.js
+@@ -34,12 +34,14 @@ class NotificationsDataSource extends _postgres.PostgresDataSource {
+     method = 'one_signal',
+     type
+   }) {
++    console.log("CREATE ADN SEND NOTIFICATION")
+     const {
+       NotificationPreference
+     } = this.context.dataSources;
+     if (!personId) throw new Error('personId is required for sending a notification');
+     if (!type || !Object.values(this.NOTIFICATION_TYPES).includes(type)) throw new Error('Passing a valid notification type is required for sending a notification');
+     if (!this.DELIVERY_METHODS[method]) throw new Error(`${method} is not a valid delivery method`);
++    console.log("Pass checks. Sending notification preferance");
+     const notificationPreference = await NotificationPreference.model.findOne({
+       where: {
+         personId,
+@@ -68,6 +70,7 @@ class NotificationsDataSource extends _postgres.PostgresDataSource {
+       externalNotificationId: id,
+       sentAt: Date.now()
+     });
++    console.log("Notification sent: contains ", notification);
+     return notification;
+   } // eslint-disable-next-line
+ 
+@@ -90,6 +93,7 @@ class NotificationsDataSource extends _postgres.PostgresDataSource {
+       include_player_ids: [notificationProviderId],
+       ...data
+     });
++
+   }
+ 
+ }
 diff --git a/node_modules/@apollosproject/data-connector-postgres/lib/prayers/dataSource.js b/node_modules/@apollosproject/data-connector-postgres/lib/prayers/dataSource.js
-index 2fe6a6e..7c8e7de 100644
+index 2fe6a6e..35b9b81 100644
 --- a/node_modules/@apollosproject/data-connector-postgres/lib/prayers/dataSource.js
 +++ b/node_modules/@apollosproject/data-connector-postgres/lib/prayers/dataSource.js
-@@ -33,6 +33,7 @@ class Prayer extends _postgres.PostgresDataSource {
+@@ -25,6 +25,7 @@ class Prayer extends _postgres.PostgresDataSource {
+ 
+     _defineProperty(this, "sendPrayingNotification", async personId => {
+       const notificationText = (0, _lodash.get)(_config.default, 'NOTIFICATIONS.PRAYING', 'The community is praying for you right now.');
++      console.log("Sending parying notification. text is: ", notificationText, " personId is: ", personId);
+       const {
+         Notification
+       } = this.context.dataSources;
+@@ -33,6 +34,7 @@ class Prayer extends _postgres.PostgresDataSource {
        Notification.createAndSend({
          title: notificationText,
          personId,
-+        body: 'Pray for others?',
++        body: 'Pray for your community?',
          type: 'PRAYER'
        });
      });
-@@ -64,8 +65,9 @@ class Prayer extends _postgres.PostgresDataSource {
+@@ -64,8 +66,9 @@ class Prayer extends _postgres.PostgresDataSource {
      });
      followers.forEach(follow => {
        Notification.createAndSend({
@@ -21,15 +77,22 @@ index 2fe6a6e..7c8e7de 100644
          type: 'PRAYER'
        });
      });
-@@ -138,10 +140,8 @@ class Prayer extends _postgres.PostgresDataSource {
+@@ -134,14 +137,14 @@ class Prayer extends _postgres.PostgresDataSource {
+   }
+ 
+   async incrementPrayed(prayerId) {
++    console.log("INCREMENTING PRAYER!!!!!!!!!!!!!!!!!!!!!!!!!")
+     const currentPerson = await this.context.dataSources.Person.getCurrentPerson();
      const prayerRequest = await this.getFromId(prayerId);
      await prayerRequest.addPrayedUser(currentPerson);
      const usersPrayed = await prayerRequest.getPrayedUsers();
 -
 -    if (usersPrayed.length === 1) {
-+      console.log("NUMBER OF USERS PRAYED", usersPrayed.length);
-       this.sendPrayingNotification(prayerRequest.personId);
+-      this.sendPrayingNotification(prayerRequest.personId);
 -    }
++    console.log("NUMBER OF USERS PRAYED", usersPrayed.length);
++    console.log("Send prayer notification.");
++    this.sendPrayingNotification(prayerRequest.personId);
    }
  
  }
