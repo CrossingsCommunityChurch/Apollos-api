@@ -1,0 +1,28 @@
+diff --git a/node_modules/@apollosproject/data-connector-onesignal/lib/data-source.js b/node_modules/@apollosproject/data-connector-onesignal/lib/data-source.js
+index 3dbcc16..8fdf8f1 100644
+--- a/node_modules/@apollosproject/data-connector-onesignal/lib/data-source.js
++++ b/node_modules/@apollosproject/data-connector-onesignal/lib/data-source.js
+@@ -43,10 +43,11 @@ class OneSignal extends _apolloDatasourceRest.RESTDataSource {
+     content = '',
+     heading,
+     subtitle,
++    include_player_ids,
+     ...args
+   }) {
+     if (!(ONE_SIGNAL !== null && ONE_SIGNAL !== void 0 && ONE_SIGNAL.APP_ID)) return null;
+-    return this.post('notifications', {
++    const postResponse = await this.post('notifications', {
+       app_id: ONE_SIGNAL.APP_ID,
+       include_external_user_ids: toUserIds.map(String),
+       contents: {
+@@ -58,8 +59,10 @@ class OneSignal extends _apolloDatasourceRest.RESTDataSource {
+       subtitle: {
+         en: subtitle
+       },
++      include_player_ids: include_player_ids.map(String),
+       ...args
+     });
++    return postResponse;
+   }
+ 
+   async updatePushSettings({
