@@ -12,6 +12,11 @@ export default {
       const event = await dataSources.Event.getDateTime(schedule);
       return event.end;
     },
+    sharing: (root, args, { dataSources }) => ({
+      url: dataSources.Event.getShareUrl(root),
+      title: 'Share via ...',
+      message: `${root.name} - `,
+    }),
   },
   Query: {
     allEvents: (root, args, { dataSources }) =>
