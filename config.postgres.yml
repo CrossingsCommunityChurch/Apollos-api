@@ -129,7 +129,7 @@ TABS:
           limit: 25
     - type: ActionBar
       actions: [{
-        title: Announcements,
+        title: News,
         icon: cal,
         id: 122,
         action: OPEN_CHANNEL,
@@ -342,3 +342,4 @@ TABS:
   #           relatedNode: { __typename: Url, url: 'https://www.facebook.com' },
   #         },
   #       ]
+
