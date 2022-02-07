@@ -1,6 +1,7 @@
 import { Event } from '@apollosproject/data-connector-rock';
 import moment from 'moment-timezone';
 import ApollosConfig from '@apollosproject/config';
+import { createGlobalId, generateAppLink } from '@apollosproject/server-core';
 import { get } from 'lodash';
 import schema from './schema';
 import resolver from './resolver';
@@ -12,6 +13,13 @@ const imageURL = 'images.crossings.church/fit-in/700x700';
 
 class dataSource extends Event.dataSource {
   calIds = CONTENT.ALL_CALIDS;
+
+  getShareUrl = async (content) => {
+    const __typename = 'Event';
+    return generateAppLink('universal', 'content', {
+      contentID: createGlobalId(content.id, __typename),
+    });
+  };
 
   findRecent = (calId) => {
     let request = this.request();
