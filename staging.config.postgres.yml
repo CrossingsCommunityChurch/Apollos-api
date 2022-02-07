@@ -76,7 +76,7 @@ CLOUDINARY:
 SIMPLEDONATION:
   KEY: ${SIMPLE_DONATION_KEY}
 CONTENT:
-  SERMON_CHANNEL_ID: db6ce8f3-7031-4f69-9000-f927c4de04c5
+  SERMON_CHANNEL_ID: 1d14f86d-fe99-4bcd-8456-ef22adc0d43f
   
   TYPES:
     - ContentSeriesContentItem
@@ -92,10 +92,10 @@ CONTENT:
     PersonaId: 498
 
   ALL_CONTENT_CHANNELS:
-    - db6ce8f3-7031-4f69-9000-f927c4de04c5 #Sermon message id 21
-    - c9da326b-049b-474c-a8cb-a052ec9cc0da #teaching Message id 22
-    - 789653e5-160e-4d34-b939-536bcde25745 #Gathering message id 423
-    - c308376b-1eea-4d58-9790-550059f7fb95 #Devotionals id 23
+    - 1d14f86d-fe99-4bcd-8456-ef22adc0d43f #Sermon message id 21
+    - 13ffb055-56e0-4bb8-b349-022336ef3239 #teaching Message id 22
+    - a51d4c7c-53ad-4e90-80cc-a5db8f9d6f92 #Gathering message id 423
+    - a9d3319c-d06d-4e16-bed7-530e6555ae5e #Devotionals id 23
 
   ALL_CALIDS:
     - 4
@@ -115,7 +115,7 @@ CONTENT:
   SUNDAY_SERMON_SCHEDULE_CATEGORY_ID: 406
 
   LIVESTREAM_CONTENT_CHANNEL_IDS: 
-    - 3824ed8f-a37f-44fd-a8c0-47c6d522bcd6
+    - d5f7c59d-079a-479b-8bd1-6ab8e0c2da1f
   
 
 TABS:
@@ -129,13 +129,13 @@ TABS:
           limit: 25
     - type: ActionBar
       actions: [{
-        title: News,
+        title: Announcements,
         icon: cal,
         id: 122,
         action: OPEN_CHANNEL,
           relatedNode: {
             __typename: 'ContentChannel',
-            apollosId: 'ContentChannel:46c423a8-5ebb-4977-a218-20cc035a1064'
+            apollosId: 'ContentChannel:9bc14762-96b7-499d-910e-c648e1396082'
           }
       },
       {
@@ -147,7 +147,8 @@ TABS:
           __typename: Url,
           url: 'https://app.crossings.church/self-checkin',
         }
-      },]
+      },
+      ]
     - algorithms: [UPCOMING_STREAMS]
       type: LiveContentList
       title: Live Now
@@ -164,7 +165,7 @@ TABS:
       - type: CONTENT_FEED
         arguments:
           channelIds:
-            - db6ce8f3-7031-4f69-9000-f927c4de04c5
+            - 1d14f86d-fe99-4bcd-8456-ef22adc0d43f
           limit: 5
       type: HeroList
       title: Recent Sermons
@@ -173,12 +174,12 @@ TABS:
         title: See More
         relatedNode:
           __typename: ContentChannel
-          apollosId: ContentChannel:db6ce8f3-7031-4f69-9000-f927c4de04c5
+          apollosId: ContentChannel:1d14f86d-fe99-4bcd-8456-ef22adc0d43f
     - algorithms:
       - type: CONTENT_FEED
         arguments:
           channelIds:
-            - 51a608c8-2a48-420b-a754-b8d22cf4e08b
+            - a8168cd6-6411-429c-98ed-f2a4ad6095f8
       type: HorizontalCardList
       subtitle: Worship
         # primaryAction:
@@ -186,7 +187,7 @@ TABS:
         #   title: See More
         #   relatedNode:
         #     __typename: ContentChannel
-        #     apollosId: ContentChannel:51a608c8-2a48-420b-a754-b8d22cf4e08b
+        #     apollosId: ContentChannel:a8168cd6-6411-429c-98ed-f2a4ad6095f8
     - title: Events and Groups
       subtitle: What's happening at Crossings
       type: ActionList
@@ -221,7 +222,7 @@ TABS:
           - type: CONTENT_FEED
             arguments:
               channelIds:
-                - c308376b-1eea-4d58-9790-550059f7fb95
+                - a9d3319c-d06d-4e16-bed7-530e6555ae5e
               limit: 5
         type: HeroList
         title: Devotions
@@ -230,7 +231,7 @@ TABS:
           title: See More
           relatedNode:
             __typename: ContentChannel
-            apollosId: ContentChannel:c308376b-1eea-4d58-9790-550059f7fb95
+            apollosId: ContentChannel:a9d3319c-d06d-4e16-bed7-530e6555ae5e
       # - algorithms:
       #   - type: CONTENT_FEED
       #     arguments:
@@ -239,11 +240,12 @@ TABS:
       #   type: HorizontalCardList
       #   subtitle: Blogs
   WATCH:
+    #need to limit this one to not show all existing sermon series and to point to the read more action
       - algorithms:
           - type: CONTENT_FEED
             arguments:
               channelIds:
-                - db6ce8f3-7031-4f69-9000-f927c4de04c5
+                - 72e659ba-754f-4227-ba0f-ae60eac674f1
               limit: 6
         type: HorizontalCardList
         subtitle: Sermon Series
@@ -252,12 +254,12 @@ TABS:
           title: See More
           relatedNode:
             __typename: ContentChannel
-            apollosId: ContentChannel:db6ce8f3-7031-4f69-9000-f927c4de04c5
+            apollosId: ContentChannel:72e659ba-754f-4227-ba0f-ae60eac674f1
       - algorithms:
           - type: CONTENT_FEED
             arguments:
               channelIds:
-                - 1c70f85f-71b5-4815-a37d-ad519f6827ab
+                - bee639de-4185-46a4-81c3-fe82e72596b6
               limit: 6
         type: HorizontalCardList
         subtitle: Teaching Series
@@ -266,12 +268,12 @@ TABS:
           title: See More
           relatedNode:
             __typename: ContentChannel
-            apollosId: ContentChannel:1c70f85f-71b5-4815-a37d-ad519f6827ab
+            apollosId: ContentChannel:bee639de-4185-46a4-81c3-fe82e72596b6
       - algorithms:
           - type: CONTENT_FEED
             arguments:
               channelIds:
-                - 41574333-53bf-45ad-83e9-32ef2192ac65
+                - 2dac29bb-f7b7-4e7e-a22d-26174ab2ef60
               limit: 6
         type: HorizontalCardList
         subtitle: The Gathering Series
@@ -280,7 +282,7 @@ TABS:
           title: See More
           relatedNode:
             __typename: ContentChannel
-            apollosId: ContentChannel:41574333-53bf-45ad-83e9-32ef2192ac65
+            apollosId: ContentChannel:2dac29bb-f7b7-4e7e-a22d-26174ab2ef60
       #- algorithms:
       #    - type: CONTENT_FEED
       #      arguments:
@@ -320,26 +322,28 @@ TABS:
       #        limit: 3
       #  type: HorizontalCardList
       #  subtitle: Something Else
+
+  PRAY:
+    - type: VerticalPrayerList
+      title: Your prayers
   GIVE:
-  # ToDo: make this height get set baised on device. 
     - type: WebView
       height: 600
       url: ${ROOT_URL}/simpledonation
-  # CONNECT:
-  #   - type: FollowPeople
-  #   - type: ActionTable
-  #     title: Connect to Apollos
-  #     actions:
-  #       [
-  #         {
-  #           title: Google,
-  #           action: OPEN_URL,
-  #           relatedNode: { __typename: Url, url: 'https://www.google.com' },
-  #         },
-  #         {
-  #           title: Facebook,
-  #           action: OPEN_URL,
-  #           relatedNode: { __typename: Url, url: 'https://www.facebook.com' },
-  #         },
-  #       ]
-
+  CONNECT:
+    - type: FollowPeople
+    - type: ActionTable
+      title: Connect to Apollos
+      actions:
+        [
+          {
+            title: Google,
+            action: OPEN_URL,
+            relatedNode: { __typename: Url, url: 'https://www.google.com' },
+          },
+          {
+            title: Facebook,
+            action: OPEN_URL,
+            relatedNode: { __typename: Url, url: 'https://www.facebook.com' },
+          },
+        ]
