@@ -257,7 +257,7 @@ TABS:
           - type: CONTENT_FEED
             arguments:
               channelIds:
-                - c9da326b-049b-474c-a8cb-a052ec9cc0da
+                - 1c70f85f-71b5-4815-a37d-ad519f6827ab
               limit: 6
         type: HorizontalCardList
         subtitle: Teaching Series
@@ -266,12 +266,12 @@ TABS:
           title: See More
           relatedNode:
             __typename: ContentChannel
-            apollosId: ContentChannel:c9da326b-049b-474c-a8cb-a052ec9cc0da
+            apollosId: ContentChannel:1c70f85f-71b5-4815-a37d-ad519f6827ab
       - algorithms:
           - type: CONTENT_FEED
             arguments:
               channelIds:
-                - 789653e5-160e-4d34-b939-536bcde25745
+                - 41574333-53bf-45ad-83e9-32ef2192ac65
               limit: 6
         type: HorizontalCardList
         subtitle: The Gathering Series
@@ -280,7 +280,7 @@ TABS:
           title: See More
           relatedNode:
             __typename: ContentChannel
-            apollosId: ContentChannel:789653e5-160e-4d34-b939-536bcde25745
+            apollosId: ContentChannel:41574333-53bf-45ad-83e9-32ef2192ac65
       #- algorithms:
       #    - type: CONTENT_FEED
       #      arguments:
