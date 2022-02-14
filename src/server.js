@@ -86,9 +86,9 @@ app.get('/health', (req, res) => {
 app.get(
   '/.well-known/apple-developer-merchantid-domain-association',
   (req, res) => {
+    res.set('content-type', 'text/plain');
     res.sendFile(
-      `${__dirname}/.well-known/apple-developer-merchantid-domain-association`,
-      { 'Content-Type': 'text/plain' }
+      `${__dirname}/.well-known/apple-developer-merchantid-domain-association`
     );
   }
 );
