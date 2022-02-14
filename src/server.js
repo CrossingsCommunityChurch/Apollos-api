@@ -87,7 +87,8 @@ app.get(
   '/.well-known/apple-developer-merchantid-domain-association',
   (req, res) => {
     res.sendFile(
-      `${__dirname}/.well-known/apple-developer-merchantid-domain-association`
+      `${__dirname}/.well-known/apple-developer-merchantid-domain-association`,
+      { 'Content-Type': 'text/plain' }
     );
   }
 );
