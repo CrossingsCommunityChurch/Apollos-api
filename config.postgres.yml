@@ -271,6 +271,20 @@ TABS:
           - type: CONTENT_FEED
             arguments:
               channelIds:
+                - 73dec3f5-0879-4960-85cd-b4206accd860
+              limit: 6
+        type: HorizontalCardList
+        subtitle: On Demand Series
+        primaryAction:
+          action: OPEN_CHANNEL
+          title: See More
+          relatedNode:
+            __typename: ContentChannel
+            apollosId: ContentChannel:73dec3f5-0879-4960-85cd-b4206accd860
+      - algorithms:
+          - type: CONTENT_FEED
+            arguments:
+              channelIds:
                 - 41574333-53bf-45ad-83e9-32ef2192ac65
               limit: 6
         type: HorizontalCardList
@@ -281,7 +295,7 @@ TABS:
           relatedNode:
             __typename: ContentChannel
             apollosId: ContentChannel:41574333-53bf-45ad-83e9-32ef2192ac65
-      #- algorithms:
+      #- algorithms:73dec3f5-0879-4960-85cd-b4206accd860
       #    - type: CONTENT_FEED
       #      arguments:
       #        channelIds:
